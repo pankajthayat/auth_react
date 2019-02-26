@@ -20,8 +20,9 @@ export default class MyComponent extends Component {
 		  onActive={this.onActive}
           onIdle={this.onIdle}
           onAction={this.onAction}
-		  debounce={250}
-          timeout={1000 * 60 * 15} />
+		  debounce={1000}
+          startOnMount={true}
+          timeout={5000} />
 		{/* your app here */}
         <App {...this.props}/>
       </div>
@@ -29,16 +30,18 @@ export default class MyComponent extends Component {
   }
 
   _onAction(e) {
-    console.log('user did something', e)
+    
+    console.log('onAction : user did something', e)
   }
 
   _onActive(e) {
-    console.log('user is active', e)
+    console.log('onActive : user is active', e)
     console.log('time remaining', this.idleTimer.getRemainingTime())
   }
 
   _onIdle(e) {
-    console.log('user is idle', e)
+    console.log('onIdle : user is idle', e)
+    console.log('Idle timer', this.idleTimer)
     console.log('last active', this.idleTimer.getLastActiveTime())
   }
 }
